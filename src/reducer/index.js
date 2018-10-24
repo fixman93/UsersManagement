@@ -16,7 +16,12 @@ const reducer = ( state = {}, action ) => {
             console.log('reducer album', action)
             return {
                 ...state,
-                albums: action.albums
+                albumList: action.albumList
+            }
+        case actionTypes.FETCH_PHOTOS:
+            return {
+                ...state,
+                photoList: action.photoList
             }
         default:
             return state

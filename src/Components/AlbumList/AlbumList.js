@@ -8,6 +8,7 @@ class AlbumList extends Component {
     state = {
         showAlbums: {},
         loading: false
+        // userID: 10 --> test userID
     }
 
     componentDidMount () {
@@ -17,9 +18,9 @@ class AlbumList extends Component {
     render() {
         let showAlbums = <p>Loading...</p>
         if(!this.state.loading) {
-            showAlbums = this.props.albums.map(album => (
-                <li key={album.id}>
-                    <span>{album.title}</span>
+            showAlbums = this.props.albums.filter(u=>u.userId === this.props.sendUserId).map(album => (
+                <li key={album.id} onClick={() => this.props.showPhotoNumber(album.id)}>
+                    <span># {album.id} {album.title}</span><br />
                 </li>
             ))
         }
