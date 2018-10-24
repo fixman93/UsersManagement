@@ -3,6 +3,8 @@ import * as actions from '../../action/index'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
+import Style from './Photos.scss'
+
 class Photos extends Component {
 
     state = {
@@ -15,7 +17,7 @@ class Photos extends Component {
         console.log('photo props', this.props)
     }
     render() {
-        let showPhotos = <p>Loading...</p>
+        let showPhotos = <p>Click album to show Photos</p>
         if(!this.state.loading && this.props.sendAlbumId) {
             showPhotos = this.props.photos.filter(u=>u.albumId === this.props.sendAlbumId).map(photo => (
                 <li key={photo.id}>
@@ -24,7 +26,7 @@ class Photos extends Component {
             ))
         }
         return (
-            <ul className="Photos">
+            <ul className={Style.Photos}>
                 {showPhotos}
             </ul>
         )

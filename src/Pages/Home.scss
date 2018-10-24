@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.Home {
+    display: block;
+    max-width: 1024px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    .leftSide {
+        width: 300px;
+        background: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+        border-style: solid;
+        border-width: 1px;
+        border-image-source: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0));
+        border-image-slice: 1;
+        padding: 40px;
+        margin-right: 24px;
+        ul {
+            li {
+                margin-bottom: 20px;
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+    .rightSide {
+        width: calc(100% - 324px);
+    }
+}

@@ -3,6 +3,8 @@ import * as actions from '../../action/index'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
+import Styles from './AlbumList.scss'
+
 class AlbumList extends Component {
 
     state = {
@@ -16,18 +18,20 @@ class AlbumList extends Component {
         console.log('album::', this.props)
     }
     render() {
-        let showAlbums = <p>Loading...</p>
+        let showAlbums = <p>Click to user to show Albums</p>
         if(!this.state.loading && this.props.sendUserId) {
             showAlbums = this.props.albums.filter(u=>u.userId === this.props.sendUserId).map(album => (
                 <li key={album.id} onClick={() => this.props.showPhotoNumber(album.userId)}>
-                   <input type="checkbox" id={album.id} /> <label for={album.id}>{album.title}</label> 
+                   <input type="checkbox" id={album.id} /> <label htmlFor={album.id}>{album.title}</label> 
                 </li>
             ))
         }
         return (
-            <ul>
-                {showAlbums}
-            </ul>
+            <div className={Styles.albumList}>
+                <ul>
+                    {showAlbums}
+                </ul>
+            </div>
         )
     }
 }

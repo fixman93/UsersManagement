@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../action/index'
 
-import './UserList.css'
+import './UserList.scss'
 
 class UserList extends Component {
     constructor(props) {

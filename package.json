@@ -55,7 +55,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "css-loader": "^1.0.0"
+    "css-loader": "^1.0.0",
+    "node-sass": "^4.9.4",
+    "sass-loader": "^7.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
