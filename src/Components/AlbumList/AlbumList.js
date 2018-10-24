@@ -17,10 +17,10 @@ class AlbumList extends Component {
     }
     render() {
         let showAlbums = <p>Loading...</p>
-        if(!this.state.loading) {
+        if(!this.state.loading && this.props.sendUserId) {
             showAlbums = this.props.albums.filter(u=>u.userId === this.props.sendUserId).map(album => (
-                <li key={album.id} onClick={() => this.props.showPhotoNumber(album.id)}>
-                    <span># {album.id} {album.title}</span><br />
+                <li key={album.id} onClick={() => this.props.showPhotoNumber(album.userId)}>
+                   <input type="checkbox" id={album.id} /> <label for={album.id}>{album.title}</label> 
                 </li>
             ))
         }

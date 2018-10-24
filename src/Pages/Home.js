@@ -31,8 +31,8 @@ class Home extends Component {
         console.log('all props', this.props)
         return (
             <div>
-                <UserList showAlbumNumber={() => this.handleClick(4)}  />
-                <AlbumList sendUserId={this.state.userId} showPhotoNumber={() => this.handleClickAlbumNumber(2)} />
+                <UserList showAlbumNumber={(userid) => this.handleClick(userid)}  />
+                <AlbumList sendUserId={this.state.userId} showPhotoNumber={(albumId) => this.handleClickAlbumNumber(albumId)} />
                 <Photos sendAlbumId={this.state.albumId} />
             </div>
         )

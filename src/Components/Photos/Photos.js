@@ -16,10 +16,10 @@ class Photos extends Component {
     }
     render() {
         let showPhotos = <p>Loading...</p>
-        if(!this.state.loading) {
-            showPhotos = this.props.photos.filter(u=>u.albumId < this.props.sendAlbumId).map(photo => (
+        if(!this.state.loading && this.props.sendAlbumId) {
+            showPhotos = this.props.photos.filter(u=>u.albumId === this.props.sendAlbumId).map(photo => (
                 <li key={photo.id}>
-                    <img src={photo.thumbnailUrl} alt="..." />
+                    <img id={photo.id} src={photo.thumbnailUrl} alt="..." />
                 </li>
             ))
         }
