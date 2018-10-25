@@ -30,9 +30,14 @@ class UserList extends Component {
             ))
         }
         return (
-            <ul>
-                {ShowUsers}
-            </ul>
+            <div>
+                <form>
+                    <input type="text" placeholder="Search..." />
+                </form>
+                <ul>
+                    {ShowUsers}
+                </ul>
+            </div>
         )
     }
 }

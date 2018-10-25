@@ -30,6 +30,13 @@ class Photos extends Component {
     // handlePhotoPagination = () => {
     //     this.setState({photoPagination: })
     // }
+    ActivePhoto = () => {
+        this.props.photos
+        .fiter(u=>u.albumId === this.props.sendAlbumId)
+        .map(photo =>(
+            photo.id
+        ))
+    }
     render() {
         let showPhotos = <p>Click album to show Photos</p>
         if(!this.state.loading && this.props.sendAlbumId) {
