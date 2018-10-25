@@ -2,20 +2,34 @@ import React, { Component } from 'react'
 import * as actions from '../../action/index'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import Pagination from '../../common/Pagination/Pagination'
 
 import Style from './Photos.scss'
 
 class Photos extends Component {
-
-    state = {
-        showPhotos: {},
-        loading: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            showPhotos: {},
+            loading: false,
+            ActivePhotos: [],
+            pageOfItems: []
+        }
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
     componentDidMount() {
         this.props.showPhotos()
         console.log('photo props', this.props)
+        
     }
+
+    onChangePage = (pageOfItems) =>{
+        this.setState({ pageOfItems: pageOfItems });
+    }
+    // handlePhotoPagination = () => {
+    //     this.setState({photoPagination: })
+    // }
     render() {
         let showPhotos = <p>Click album to show Photos</p>
         if(!this.state.loading && this.props.sendAlbumId) {
@@ -25,10 +39,18 @@ class Photos extends Component {
                 </li>
             ))
         }
+        
         return (
-            <ul className={Style.Photos}>
-                {showPhotos}
-            </ul>
+            <div>
+                <div onClick={this.handlePhotoPagination}></div>
+                <ul className={Style.Photos}>
+                    {showPhotos}
+                </ul>
+                {this.state.pageOfItems.map(item =>
+                            <div key={item.id}>{item.thumbnailUrl}</div>
+                        )}
+                <Pagination items={this.props.photos} onChangePage={this.onChangePage} />
+            </div>
         )
     }
 }
