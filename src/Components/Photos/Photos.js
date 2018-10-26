@@ -13,7 +13,8 @@ class Photos extends Component {
             showPhotos: {},
             loading: false,
             ActivePhotos: [],
-            pageOfItems: []
+            pageOfItems: [],
+            albumList: []
         }
         this.onChangePage = this.onChangePage.bind(this);
     }
@@ -21,7 +22,6 @@ class Photos extends Component {
     componentDidMount() {
         this.props.showPhotos()
         console.log('photo props', this.props)
-        
     }
 
     onChangePage = (pageOfItems) =>{
@@ -30,13 +30,13 @@ class Photos extends Component {
     // handlePhotoPagination = () => {
     //     this.setState({photoPagination: })
     // }
-    ActivePhoto = () => {
-        this.props.photos
-        .fiter(u=>u.albumId === this.props.sendAlbumId)
-        .map(photo =>(
-            photo.id
-        ))
-    }
+    // ActivePhoto = () => {
+    //     this.props.photos
+    //     .fiter(u=>u.albumId === this.props.sendAlbumId)
+    //     .map(photo =>(
+    //         photo.id
+    //     ))
+    // }
     render() {
         let showPhotos = <p>Click album to show Photos</p>
         if(!this.state.loading && this.props.sendAlbumId) {
@@ -46,17 +46,20 @@ class Photos extends Component {
                 </li>
             ))
         }
+        console.log(showPhotos)
+        let albumList = this.props.photos.filter(u=>u.albumId === this.props.sendAlbumId)
         
+        console.log('dsadsadsadsa', this.state.albumList)
         return (
             <div>
                 <div onClick={this.handlePhotoPagination}></div>
                 <ul className={Style.Photos}>
                     {showPhotos}
                 </ul>
-                {this.state.pageOfItems.map(item =>
+                {/* {this.state.pageOfItems.map(item =>
                             <div key={item.id}>{item.thumbnailUrl}</div>
-                        )}
-                <Pagination items={this.props.photos} onChangePage={this.onChangePage} />
+                        )} */}
+                <Pagination items={albumList} onChangePage={this.onChangePage} />
             </div>
         )
     }
