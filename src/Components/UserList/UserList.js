@@ -11,17 +11,44 @@ class UserList extends Component {
         this.state = {
             ShowUsers: {},
             loading: false,
-            userId: null
+            userId: null,
+            searchValue: null
         }
+        this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount () {
         this.props.ShowAllUsers();
+        
     }
 
+    handleChange = (event) => {
+        this.setState({searchValue: event.target.value})
+    }
+
+    userList = (event) => {
+        let updatedList = this.props.users;
+        updatedList = updatedList.filter((item) =>{
+          return item.name.toLowerCase().search(
+            event.target.value.toLowerCase()) !== -1;
+        });
+        this.setState({searchValue: updatedList});
+      }
+
+      componentWillMount() {
+        this.setState({searchValue: this.props.users})
+      }
     render() {
         let ShowUsers = <p>Loading...</p>
         if(!this.state.loading) {
-            ShowUsers = this.props.users.map(user => (
+            this.state.searchValue && this.state.searchValue.length > 0 ? (
+                ShowUsers = this.state.searchValue.map(user => (
+                    <li key={user.id} onClick={() => this.props.showAlbumNumber(user.id)}>
+                        <span>{user.name}</span>
+                        <span>{user.username}</span>
+                        <span>{user.email}</span>
+                    </li>
+                ))
+            ) : ShowUsers = this.props.users.map(user => (
                 <li key={user.id} onClick={() => this.props.showAlbumNumber(user.id)}>
                     <span>{user.name}</span>
                     <span>{user.username}</span>
@@ -32,7 +59,7 @@ class UserList extends Component {
         return (
             <div>
                 <form>
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" placeholder='Search...' onChange={this.userList} />
                 </form>
                 <ul>
                     {ShowUsers}
