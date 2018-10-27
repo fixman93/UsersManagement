@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import Styles from './Pagination.scss'
  
 const propTypes = {
     items: PropTypes.array.isRequired,
@@ -113,7 +115,7 @@ class Pagination extends React.Component {
         }
  
         return (
-            <ul className="pagination">
+            <ul className={Styles.pagination}>
                 <li className={pager.currentPage === 1 ? 'disabled' : ''}>
                     <a onClick={() => this.setPage(1)}>First</a>
                 </li>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Pagination from '../../common/Pagination/Pagination'
 
-import Style from './Photos.scss'
+import Styles from './Photos.scss'
 
 class Photos extends Component {
     constructor(props) {
@@ -12,9 +12,7 @@ class Photos extends Component {
         this.state = {
             showPhotos: {},
             loading: false,
-            ActivePhotos: [],
-            pageOfItems: [],
-            albumList: []
+            pageOfItems: []
         }
         this.onChangePage = this.onChangePage.bind(this);
     }
@@ -22,20 +20,14 @@ class Photos extends Component {
     componentDidMount() {
         this.props.showPhotos()
         console.log('photo props', this.props)
+        console.log('example', this.state.photoPagination)
     }
 
-    onChangePage = (pageOfItems) =>{
+    onChangePage(pageOfItems) {
         this.setState({ pageOfItems: pageOfItems });
     }
     // handlePhotoPagination = () => {
     //     this.setState({photoPagination: })
-    // }
-    // ActivePhoto = () => {
-    //     this.props.photos
-    //     .fiter(u=>u.albumId === this.props.sendAlbumId)
-    //     .map(photo =>(
-    //         photo.id
-    //     ))
     // }
     render() {
         let showPhotos = <p>Click album to show Photos</p>
@@ -46,20 +38,21 @@ class Photos extends Component {
                 </li>
             ))
         }
-        console.log(showPhotos)
-        let albumList = this.props.photos.filter(u=>u.albumId === this.props.sendAlbumId)
-        
-        console.log('dsadsadsadsa', this.state.albumList)
+        // let currentPhoto = this.props.photos.filter(u=>u.albumId === this.props.sendAlbumId)
         return (
-            <div>
+            <div className={Styles.PhotoImage}>
                 <div onClick={this.handlePhotoPagination}></div>
-                <ul className={Style.Photos}>
-                    {showPhotos}
+                <ul className={Styles.Photos}>
+                    {/* {showPhotos} */}
+                    {this.state.pageOfItems.map(photo =>
+                        <li key={photo.id}>
+                            <img id={photo.id} src={photo.thumbnailUrl} alt="..." />
+                            <p>{photo.title}</p>
+                        </li>
+                    )}
                 </ul>
-                {/* {this.state.pageOfItems.map(item =>
-                            <div key={item.id}>{item.thumbnailUrl}</div>
-                        )} */}
-                <Pagination items={albumList} onChangePage={this.onChangePage} />
+                
+                {this.props.showPhoto ? (<div><Pagination className={Styles.Pagination} items={this.props.photos} onChangePage={this.onChangePage} /></div>) : <div>Select an album first</div>}
             </div>
         )
     }

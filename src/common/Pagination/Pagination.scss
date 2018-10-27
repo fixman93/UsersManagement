@@ -1,0 +1,19 @@
+ul.pagination {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    li {
+        padding: 7px 5px;
+        border: 1px solid #ccc;
+        margin: 0 3px;
+        cursor: pointer;
+        font-size: 11px;
+        &.active {
+            border: 1px solid blue;
+            background: #999;
+            color: white;
+        }
+    }
+}

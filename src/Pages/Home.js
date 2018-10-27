@@ -16,7 +16,8 @@ class Home extends Component {
         super(props)
         this.state = {
             userId: null,
-            albumId: null
+            albumId: null,
+            showPhoto: false
         }
         this.handleClick = this.handleClick.bind(this);
     }
@@ -27,7 +28,8 @@ class Home extends Component {
 
     handleClickAlbumNumber = id => {
         console.log('id photo', id)
-        this.setState({albumId: id})
+        this.setState({albumId: id, showPhoto: true})
+        console.log('show photossssss:::', this.state.showPhoto)
     }
     render() {
         console.log('all props', this.props)
@@ -38,7 +40,7 @@ class Home extends Component {
                 </div>
                 <div className={Styles.rightSide}>
                     <AlbumList sendUserId={this.state.userId} showPhotoNumber={(albumId) => this.handleClickAlbumNumber(albumId)} />
-                    <Photos sendAlbumId={this.state.albumId} />
+                    <Photos sendAlbumId={this.state.albumId} showPhoto={this.state.showPhoto} />
                 </div>
             </div>
         )
