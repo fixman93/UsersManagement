@@ -27,7 +27,7 @@ class Photos extends Component {
     // handlePhotoPagination = () => {
     //     this.setState({photoPagination: })
     // }
-
+ 
       
     render() {
         let showPhotos = <p>Click album to show Photos</p>
